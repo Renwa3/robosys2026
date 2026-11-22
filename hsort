@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2026 Ren Watanabe
+# SPDX-License-Identifier: BSD-3-Clause
+
+hist_file="${1:-}"
+prefix=""
+
+# 引数が1つで、ファイル名ではなく文字（例: c）なら絞り込み文字にする
+if [ -n "$hist_file" ] && [ ! -f "$hist_file" ]; then
+  prefix="$hist_file"
+  hist_file=""
+fi
+
+# パイプで渡されたら標準入力、そうでなければ ~/.bash_history を読む
+if [ ! -t 0 ]; then
+  input="$(cat)"
+else
+  target="${hist_file:-$HOME/.bash_history}"
+  if [ ! -r "$target" ]; then
+    echo "Error: cannot read $target" >&2
+    exit 1
+  fi
+  input="$(cat "$target")"
+fi
+
+# 履歴番号を消して空行を除き、指定文字で絞って回数順に上位10件を出す
+cmds="$(
+  printf '%s\n' "$input" \
+    | tail -n 100 \
+    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
+    | sed '/^$/d'
+)"
+
+if [ -n "$prefix" ]; then
+  cmds="$(printf '%s\n' "$cmds" | awk -v p="$prefix" 'index($0, p) == 1')"
+fi
+
+printf '%s\n' "$cmds" \
+  | sort \
+  | uniq -c \
+  | sort -nr \
+  | head -n 10
