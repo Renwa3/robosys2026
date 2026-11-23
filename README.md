@@ -18,7 +18,8 @@
 ```
 source ./hisort
 hisort
-hisort git p```
+hisort git p
+```
 - 出力例
 ```
  2 git push
