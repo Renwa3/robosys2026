@@ -7,12 +7,12 @@ hisort(){
   if [ -z "$prefix" ]; then
    history "$((n + 1))" \
     | sed '$d' \
-    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+/a/' \
+    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
     | sort \
     | uniq -c \
     | sort -nr \
     | head -n 10
-  else
+  #else
    history "$((n + 1))" \
     | sed '$d' \
     | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
