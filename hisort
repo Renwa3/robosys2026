@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # SPDX-FileCopyrightText: 2026 Ren Watanabe
 # SPDX-License-Identifier: BSD-3-Clause
-
+hisort(){
   local n="${1:-50}"
   if ! [[ "$n" =~ ^[0-9]+$ ]] || [ "$n" -le 0 ]; then
     echo "Error: count must be a positive integer" >&2
