@@ -53,7 +53,7 @@ expected_no_prefix=$'      2 echo hi\n      1 pwd'
 if [ -x ./hisort ]; then
   out=$(printf '%s\n' "  1  ls" "  2  ls" "  3  ls" "  4  pwd" | ./hisort ls)
   [ "$?" = 0 ] || ng "$LINENO"
-  [ "${out}" =$'      3 ls' ] || ng "$LINENO"
+  [ "${out}" = $'      3 ls' ] || ng "$LINENO"
 fi
 
 ### STRANGE INPUT ###
