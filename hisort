@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # SPDX-FileCopyrightText: 2026 Ren Watanabe
 # SPDX-License-Identifier: BSD-3-Clause
-hisort(){
+
+hisort() {
   local prefix="$*"
   local n=200
+  local input
 
   if [ ! -t 0 ]; then
     input="$(cat)"
@@ -12,22 +14,22 @@ hisort(){
   fi
 
   if [ -z "$prefix" ]; then
-   printf '%s\n' "$input" \
-    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
-    | sed -E '/^[[:space:]]*$/d \
-    | sort \
-    | uniq -c \
-    | sort -nr \
-    | head -n 10
+    printf '%s\n' "$input" \
+      | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
+      | sed -E '/^[[:space:]]*$/d' \
+      | sort \
+      | uniq -c \
+      | sort -nr \
+      | head -n 10
   else
-   printf '%s\n' "$input" \
-    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
-    | awk -v p="$prefix" 'index($0, p) == 1' \
-    | sed -E '/[[:space:]]*$/d' \
-    | sort \
-    | uniq -c \
-    | sort -nr \
-    | head -n 10
+    printf '%s\n' "$input" \
+      | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
+      | awk -v p="$prefix" 'index($0, p) == 1' \
+      | sed -E '/^[[:space:]]*$/d' \
+      | sort \
+      | uniq -c \
+      | sort -nr \
+      | head -n 10
   fi
 }
 

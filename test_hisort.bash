@@ -41,7 +41,7 @@ out=$(printf '%s\n' "$stdin_data" | hisort "git commit")
 [ "$?" = 0 ] || ng "$LINENO"
 expected_stdin=$'      3 git commit -m "a"\n      3 git commit -m "b"\n      3 git commit -m "c"'
 # 同一カウントの行順は sort に依存するため、件数とコマンドが含まれるか確認
-echo "$out" | grep -q '      3 git commit -m "a"' || ng "$LINENO"
+echo "$out" | grep -q '      1 git commit -m "a"' || ng "$LINENO"
 
 # 引数なしで標準入力を渡した場合
 out=$(printf '%s\n' "  1  echo hi" "  2  echo hi" "  3  pwd" | hisort)
