@@ -32,7 +32,6 @@ hisort git p
 - 実行権限を付けたうえで、標準入力から履歴形式のデータを渡して使います。
 
 ```
-bash
 chmod +x hisort
 printf "  1  git status\n  2  git push\n  3  git push\n  4  ls -la\n" | ./hisort
 ```
