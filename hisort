@@ -4,17 +4,22 @@
 hisort(){
   local prefix="$*"
   local n=200
+
+  if [ ! -t 0 ]; then
+    input="$(cat)"
+  else
+    input="$(history "$((n + 1))" | sed '$d')"
+  fi
+
   if [ -z "$prefix" ]; then
-   history "$((n + 1))" \
-    | sed '$d' \
+   printf '%s\n' "$input" \
     | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
     | sort \
     | uniq -c \
     | sort -nr \
     | head -n 10
   else
-   history "$((n + 1))" \
-    | sed '$d' \
+   printf '%s\n' "$input" \
     | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
     | awk -v p="$prefix" 'index($0, p) == 1' \
     | sort \
@@ -23,3 +28,7 @@ hisort(){
     | head -n 10
   fi
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  hisort "$@"
+fi
