@@ -2,16 +2,19 @@
 # SPDX-FileCopyrightText: 2026 Ren Watanabe
 # SPDX-License-Identifier: BSD-3-Clause
 hisort(){
-  local n="${1:-50}"
-  if ! [[ "$n" =~ ^[0-9]+$ ]] || [ "$n" -le 0 ]; then
-    echo "Error: count must be a positive integer" >&2
+  local prefix="${1:-}"
+  local n=200
+  if [ -z "$prefix" ]; then
+    echo "Error: prefix is required" >&2
     return 1
   fi
 
   history "$((n + 1))" \
     | sed '$d' \
     | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
+    | awk -v p="$prefix" 'index($0, p) == 1' \
     | sort \
     | uniq -c \
-    | sort -nr
+    | sort -nr \
+    | head -n 10
 }
