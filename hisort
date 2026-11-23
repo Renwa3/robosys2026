@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Ren Watanabe
 # SPDX-License-Identifier: BSD-3-Clause
 hisort(){
-  local prefix="${1:-}"
+  local prefix="$*"
   local n=200
   if [ -z "$prefix" ]; then
     echo "Error: prefix is required" >&2
