@@ -1,5 +1,10 @@
 # robosys2026
 
+
+#hisortコマンド
+![test](https://github.com/Renwa3/robosys2026/actions/workflows/test.yml/badge.svg)
+
+-
 # plusコマンド
 ![test](https://github.com/Renwa3/robosys2026/actions/workflows/test.yml/badge.svg)
 

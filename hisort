@@ -20,7 +20,7 @@ hisort() {
       | sort \
       | uniq -c \
       | sort -nr \
-      | head -n 10
+      | head -n 15
   else
     printf '%s\n' "$input" \
       | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
@@ -29,7 +29,7 @@ hisort() {
       | sort \
       | uniq -c \
       | sort -nr \
-      | head -n 10
+      | head -n 15
   fi
 }
 
