@@ -15,4 +15,4 @@ jobs:
       - name: Test plus
         run: bash -xv ./test.bash
       - name: Test hisort
-        run: bash -xv ./hisort_test.bash
+        run: bash -xv ./test_hisort.bash
