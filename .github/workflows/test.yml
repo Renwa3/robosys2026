@@ -1,16 +1,40 @@
-name: test
-on: push
-jobs:
-  test:
-    runs-on: ubuntu-latest
+name: test                      # ワークフローの名前
+on: push                        # push されたときにこのワークフローを走らせる
+jobs:                           # 走らせたい処理（ジョブ）のリスト
+  test:                         # test というジョブを作る
+    runs-on: ubuntu-latest      # どの環境で動かすか
     strategy:
+      fail-fast: false          # 1つの組み合わせが失敗しても他の組み合わせの結果も見られるようにする
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-    steps:
-    - uses: actions/checkout@v5
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: All test
-      run: bash -xv ./test.bash
+        bash-version: ["4.4", "5.2"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:                      # 手続きの記述
+      - uses: actions/checkout@v5 # リポジトリのコードを取得する
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Build and install Bash ${{ matrix.bash-version }}
+        run: |
+          set -euo pipefail
+          ver="${{ matrix.bash-version }}"
+          case "$ver" in
+            "4.4") url="https://ftp.gnu.org/gnu/bash/bash-4.4.18.tar.gz" ;;
+            "5.2") url="https://ftp.gnu.org/gnu/bash/bash-5.2.21.tar.gz" ;;
+            *) echo "Unsupported version: $ver" >&2; exit 1 ;;
+          esac
+          curl -fsSL "$url" -o bash.tar.gz
+          tar -xzf bash.tar.gz
+          cd bash-*
+          ./configure --prefix=/usr/local/bash-"$ver" >/dev/null
+          make -j"$(nproc)" >/dev/null
+          sudo make install >/dev/null
+          sudo ln -sf /usr/local/bash-"$ver"/bin/bash /usr/local/bin/bash-test
+
+      - name: Run plus test (Bash ${{ matrix.bash-version }}, Python ${{ matrix.python-version }})
+        run: bash-test -xv ./test.bash
+
+      - name: Run hisort test (Bash ${{ matrix.bash-version }}, Python ${{ matrix.python-version }})
+        run: bash-test -xv ./hisort_test.bash
