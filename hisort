@@ -7,7 +7,7 @@ hisort(){
   if [ -z "$prefix" ]; then
    history "$((n + 1))" \
     | sed '$d' \
-    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//' \
+    | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+/a/' \
     | sort \
     | uniq -c \
     | sort -nr \
