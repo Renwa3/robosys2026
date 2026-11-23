@@ -3,8 +3,36 @@
 
 #hisortコマンド
 ![test](https://github.com/Renwa3/robosys2026/actions/workflows/test.yml/badge.svg)
+コマンド履歴形式のテキスト（標準入力またはシェルの `history`）から、コマンドの実行回数を集計して上位10件を表示するコマンドです。プレフィックス（先頭一致の文字列）を指定して絞り込むこともできます。
 
--
+## 特徴
+
+- パイプやリダイレクトで渡した履歴データを集計し、標準出力へ結果を返します。
+- 標準入力がない場合は `history` から履歴を取得して集計します。
+- 引数を渡すと、その文字列で始まるコマンドだけを対象に集計します。
+
+## 使い方
+
+### 1. 現在のシェルに読み込んで使う
+- 入力例
+```source ./hisort
+hisort
+hisort git p```
+- 出力例
+```
+ 2 git push
+ 1 ls -la
+ 1 git status
+```
+
+### 2. コマンドとして直接実行する（標準入力・パイプ向け）
+
+実行権限を付けたうえで、標準入力から履歴形式のデータを渡して使います。
+
+```bash
+chmod +x hisort
+printf "  1  git status\n  2  git push\n  3  git push\n  4  ls -la\n" | ./hisort```
+
 # plusコマンド
 ![test](https://github.com/Renwa3/robosys2026/actions/workflows/test.yml/badge.svg)
 
