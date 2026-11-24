@@ -17,7 +17,7 @@
 ### 1. コマンドとして直接実行する（標準入力・パイプ向け）
 
 実行権限を付けたうえで、標準入力から履歴形式のデータを渡して使います。
-- 入力例(サンプルデータとして[sample_history.txt](./sample_history.txt)　を読み込ませます。)
+- 入力例(サンプルデータとして[sample_history.txt](./sample_history.txt)を読み込ませます。)
 ```
 chmod +x hisort
 cat sample_history.txt | ./hisort
@@ -34,7 +34,7 @@ cat sample_history.txt | ./hisort
 ...
 ```
 1行1文字列のテキストファイルを読み込んだり、先頭の文字列で絞ることも可能です。
-- 入力例(サンプルデータとして、1行1文字列の[sample_text.txt](./sample_text.txt) を読み込ませます。)
+- 入力例(サンプルデータとして、1行1文字列の[sample_text.txt](./sample_text.txt)を読み込ませます。)
 ```
 cat sample_text.txt | ./hisort ap
 ```
