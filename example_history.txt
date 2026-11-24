@@ -1,0 +1,52 @@
+# SPDX-FileCopyrightText: 2026 Ren Watanabe
+# SPDX-License-Identifier: BSD-3-Clause
+  101  git status
+  102  git add .
+  103  git commit -m "update hisort"
+  104  git push
+  105  ls -la
+  106  cd ~/robosys2026
+  107  git status
+  108  chmod +x hisort test_hisort.bash
+  109  bash ./test_hisort.bash
+  110  git push
+  111  git status
+  112  ./hisort "git"
+  113  git status
+  114  git pull
+  115  git push
+  116  ls -la
+  117  cat README.md
+  118  git status
+  119  git push
+  120  bash ./test_hisort.bash
+  121  git status
+  122  git diff
+  123  git add README.md
+  124  git commit -m "add usage to README"
+  125  git push
+  126  ls -la
+  127  source ./hisort
+  128  hisort "git p"
+  129  git status
+  130  git push
+  131  bash ./test_hisort.bash
+  132  git status
+  133  git log -n 5
+  134  ls -la
+  135  ./hisort
+  136  git status
+  137  git add .
+  138  git commit -m "fix crlf handling"
+  139  git push
+  140  bash ./test_hisort.bash
+  141  git status
+  142  git push
+  143  ls -la
+  144  cat LICENSE
+  145  git status
+  146  ./hisort "ls"
+  147  git push
+  148  bash ./test_hisort.bash
+  149  git status
+  150  git push
