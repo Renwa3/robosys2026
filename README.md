@@ -60,7 +60,12 @@ hisort git p
  1 git status 
 ```
 ## 必要なソフトウェア
-- Bash
+本スクリプトは標準的な Linux / UNIX 環境で追加インストールなしに動作します。
+
+- **Bash**（GNU Bash 4.0 以降）
+- **GNU Coreutils**（`cat`, `tr`, `sort`, `uniq`, `head`）
+- **GNU sed**
+- **awk**（`gawk` など）
 ## テスト環境
 - Ubuntu 24.04 LTS
 # plusコマンド
