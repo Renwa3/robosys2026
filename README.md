@@ -59,7 +59,10 @@ hisort git p
  2 ls -la
  1 git status 
 ```
-
+## 必要なソフトウェア
+- Bash
+## テスト環境
+- Ubuntu 24.04 LTS
 # plusコマンド
 ![test](https://github.com/Renwa3/robosys2026/actions/workflows/test.yml/badge.svg)
 
