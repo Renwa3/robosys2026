@@ -17,12 +17,22 @@
 ### 1. コマンドとして直接実行する（標準入力・パイプ向け）
 
 - 実行権限を付けたうえで、標準入力から履歴形式のデータを渡して使います。
-
+- 入力例
 ```
 chmod +x hisort
-printf "  1  git status\n  2  git push\n  3  git push\n  4  ls -la\n" | ./hisort
+cat sample_history.txt | ./hisort
 ```
-
+- 出力例
+```
+ 12 git status
+ 10 git push
+ 5 ls -la
+ 5 bash ./test_hisort.bash
+ 2 git add .
+ 1 source ./hisort
+ 1 hisort "git p"
+...
+```
 ### 2. 現在のシェルに読み込んで使う
 
 - 入力例
