@@ -46,7 +46,7 @@ cat sample_text.txt | ./hisort ap
 
 
 ### 2. 現在のシェルに読み込んで使う
-'history'から直近の200件を読み込みます。
+`history`から直近の200件を読み込みます。
 - 入力例
 ```
 source ./hisort
