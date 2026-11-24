@@ -33,6 +33,18 @@ cat sample_history.txt | ./hisort
  1 hisort "git p"
 ...
 ```
+- 1行1文字列のテキストファイルを読み込んだり、先頭の文字列で絞ることも可能です。
+- 入力例
+```
+cat sample_text.txt | ./hisort ap
+```
+- 出力例
+```
+ 6 apple
+ 4 apricot
+```
+
+
 ### 2. 現在のシェルに読み込んで使う
 
 - 入力例
